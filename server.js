@@ -20,6 +20,11 @@ app.use(session({
   saveUninitialized: false
 }))
 
+
+app.get('/', (req, res) => {
+  res.send('cool desk app')
+})
+
 // Controllers
 const deskController = require('./controllers/desk_controller.js')
 app.use('/desks', deskController)
