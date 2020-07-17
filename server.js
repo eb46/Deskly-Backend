@@ -22,7 +22,7 @@ app.use(session({
 
 // Controllers
 const deskController = require('./controllers/desk_controller.js')
-app.use('/', deskController)
+app.use('/desks', deskController)
 
 const usersController = require('./controllers/users_controller.js')
 app.use('/users', usersController)
