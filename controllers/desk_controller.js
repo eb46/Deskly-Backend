@@ -1,23 +1,17 @@
 // Dependencies
 const express = require('express')
-const cors = require('cors')
 const desk_pool = require('../database.js')
 
 // Configuration
-const app = express()
 const desk = express.Router()
 
-// Middleware
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
-app.use(express.static('public'))
 
 console.log('deskController');
 // Routes
 
+
 // CREATE
-desk.post('/desks', async (req, res) => {
+desk.post('/', async (req, res) => {
   try {
     const { username, image } = req.body
     const newDesk = await desk_pool.query("INSERT INTO desks (username, image) VALUES($1, $2) RETURNING *",
@@ -29,7 +23,7 @@ desk.post('/desks', async (req, res) => {
 })
 
 // READ
-desk.get('/desks', async (req, res) => {
+desk.get('/', async (req, res) => {
   try {
     const allDesks = await desk_pool.query("SELECT * FROM desks")
     res.json(allDesks.rows)
@@ -38,7 +32,7 @@ desk.get('/desks', async (req, res) => {
   }
 })
 
-desk.get('/desks/:id', async (req, res) => {
+desk.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const desk = await desk_pool.query("SELECT * FROM desks WHERE id = $1", [id])
@@ -49,7 +43,7 @@ desk.get('/desks/:id', async (req, res) => {
 })
 
 // UPDATE
-desk.put('/desks/:id', async (req, res) => {
+desk.put('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const { username, image } = req.body
@@ -65,7 +59,7 @@ desk.put('/desks/:id', async (req, res) => {
 })
 
 // DELETE
-desk.delete('/desks/:id', async (req, res) => {
+desk.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const deleteDesk = await desk_pool.query("DELETE FROM desks WHERE id = $1 RETURNING *", [id])

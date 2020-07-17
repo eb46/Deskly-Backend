@@ -39,3 +39,11 @@ app.use('/sessions', sessionsController)
 app.listen(PORT, () => {
   console.log(`server has started on ${PORT}!`);
 })
+
+const routes = [];
+app._router.stack.forEach(middleware => {
+  if (middleware.route) {
+    routes.push(`${Object.keys(middleware.route.methods)} -> ${middleware.route.path}`);
+  }
+});
+console.log(JSON.stringify(routes, null, 2));
