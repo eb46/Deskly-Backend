@@ -1,10 +1,41 @@
-const Pool = require('pg')
+const Pool = require('pg').Pool
+const { Client } = require('pg');
 
-const pool = process.env.DATABASE_URL || new Pool({
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  port: process.env.PORT,
-  database: process.env.DBNAME
-})
+let pool = ''
 
+if (process.env.DATABASE_URL) {
+  console.log('database');
+    pool = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  })
+
+  client.connect()
+
+} else {
+  console.log('data else');
+  pool = new Pool({
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    port: process.env.PG_PORT,
+    database: process.env.DBNAME
+  })
+
+//   pool.connect((err, client, release) => {
+//   if (err) {
+//     return console.error('Error acquiring client', err.stack)
+//   }
+//   client.query('SELECT NOW()', (err, result) => {
+//     release()
+//     if (err) {
+//       return console.error('Error executing query', err.stack)
+//     }
+//     console.log(result.rows)
+//   })
+// })
+}
+
+// console.log(pool);
 module.exports = pool
