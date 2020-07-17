@@ -12,7 +12,7 @@ if (process.env.DATABASE_URL) {
     }
   })
 
-  client.connect()
+  pool.connect()
 
 } else {
   console.log('data else');
