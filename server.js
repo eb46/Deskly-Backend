@@ -6,7 +6,7 @@ require('dotenv').config()
 
 // Configuration
 const app = express()
-const PORT = 5000
+const PORT = 5000 || process.env.PORT
 
 // Middleware
 app.use(cors())
@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
 
 app.use(session({
-  secret:'idkwhatimdoing',
+  secret:process.env.SECRET,
   resave: true,
   saveUninitialized: false
 }))
