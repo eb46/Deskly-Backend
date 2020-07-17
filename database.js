@@ -1,6 +1,6 @@
 const Pool = require('pg').Pool
 
-const pool = new Pool({
+const pool = process.env.DATABASE_URL || new Pool({
   user: process.env.USER,
   password: process.env.PASSWORD,
   port: process.env.PORT,
