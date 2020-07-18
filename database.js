@@ -11,11 +11,11 @@ if (process.env.DATABASE_URL) {
       rejectUnauthorized: false
     }
   })
-
+  console.log('posting to heroku');
   pool.connect()
 
 } else {
-  console.log('data else');
+  console.log('posting locally');
   pool = new Pool({
     user: process.env.USER,
     password: process.env.PASSWORD,
