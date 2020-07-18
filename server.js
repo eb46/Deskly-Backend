@@ -22,7 +22,7 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
-  res.send('cool desk app')
+  res.send('cool desk app' + PORT)
 })
 
 // Controllers
