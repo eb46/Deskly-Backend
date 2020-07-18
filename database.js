@@ -11,7 +11,6 @@ if (process.env.DATABASE_URL) {
       rejectUnauthorized: false
     }
   })
-  console.log('posting to heroku');
   pool.connect()
 
 } else {
