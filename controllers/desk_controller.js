@@ -5,11 +5,6 @@ const desk_pool = require('../database.js')
 // Configuration
 const desk = express.Router()
 
-
-console.log('deskController');
-// Routes
-
-
 // CREATE
 desk.post('/', async (req, res) => {
   try {
@@ -25,6 +20,8 @@ desk.post('/', async (req, res) => {
 // READ
 desk.get('/', async (req, res) => {
   try {
+    console.log(req);
+    console.log(res);
     const allDesks = await desk_pool.query("SELECT * FROM desks")
     res.json(allDesks.rows)
   } catch (err) {
