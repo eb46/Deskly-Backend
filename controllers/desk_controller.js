@@ -21,7 +21,8 @@ desk.post('/', async (req, res) => {
 desk.get('/', async (req, res) => {
   try {
     console.log(req);
-    console.log(res);
+    // console.log(res);
+    console.log('get route');
     const allDesks = await desk_pool.query("SELECT * FROM desks")
     res.json(allDesks.rows)
   } catch (err) {
