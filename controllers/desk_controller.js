@@ -61,9 +61,9 @@ desk.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const deleteDesk = await desk_pool.query("DELETE FROM desks WHERE id = $1 RETURNING *", [id])
-    // res.json(deleteDesk.rows)
+    res.json(deleteDesk.rows)
   } catch (err) {
-    console.log(err)
+    res.json(err)
   }
 })
 
